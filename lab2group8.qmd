@@ -1,0 +1,31 @@
+---
+title: "lab2group8"
+format: html
+editor: visual
+---
+
+# Hanzhi
+
+```{r} 
+# Load the readr package
+library(readr) 
+
+# Load the CSV file into a data frame 
+drg_data <- read_csv("DRG_data.csv")  
+
+# Display the first few rows of the data frame 
+head(drg_data)
+```
+
+```{r}
+```
+
+# Yihan
+
+```{r}
+```
+
+# Belén
+
+```{r}
+```
