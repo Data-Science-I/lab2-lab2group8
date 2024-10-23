@@ -6,7 +6,7 @@ editor: visual
 
 # Hanzhi
 
-```{r} 
+```{r}
 # Load the readr package
 library(readr) 
 
@@ -28,4 +28,5 @@ head(drg_data)
 # Belén
 
 ```{r}
+
 ```
