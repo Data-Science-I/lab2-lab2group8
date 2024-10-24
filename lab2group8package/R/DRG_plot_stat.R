@@ -57,12 +57,16 @@ calculate_DRG_stats <- function(data, stat_type = c("mean", "median", "sd")) {
   library(dplyr)
   result <- data %>%
     group_by(`DRG Definition`) %>%
-    summarise(AverageMedicarePayments = .data[["Average Medicare Payments"]]) %>%
-    summarise(
-      stat = switch(stat_type,
-                    "mean" = mean(AverageMedicarePayments, na.rm = TRUE),
-                    "median" = median(AverageMedicarePayments, na.rm = TRUE),
-                    "sd" = sd(AverageMedicarePayments, na.rm = TRUE))
+    #summarise(AverageMedicarePayments = .data[["Average Medicare Payments"]]) %>%
+    #summarise(
+    #  stat = switch(stat_type,
+    #                "mean" = mean(AverageMedicarePayments, na.rm = TRUE),
+    #                "median" = median(AverageMedicarePayments, na.rm = TRUE),
+    #                "sd" = sd(AverageMedicarePayments, na.rm = TRUE))
+    reframe(stat = switch(stat_type,
+                          "mean" = mean(`Average Medicare Payments`, na.rm = TRUE),
+                          "median" = median(`Average Medicare Payments`, na.rm = TRUE),
+                          "sd" = sd(`Average Medicare Payments`, na.rm = TRUE)))
     )
 
   return(result)
