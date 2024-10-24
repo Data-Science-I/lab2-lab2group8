@@ -9,7 +9,9 @@ editor: visual
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
+
 ```{r}
+library(readr)
 library(lab2group8package)
 ```
 
