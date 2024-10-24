@@ -90,4 +90,5 @@ calculate_DRG_stats(drg_data, "mean")
 # Belén
 
 ```{r}
+
 ```
