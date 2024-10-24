@@ -18,6 +18,7 @@ drg_data <- read_csv("DRG_data.csv")
 ```
 
 ## Though I am not sure if 'DRG Definition' refers DRG code, the format of the code in 'DRG Definition' match with the DRG code's format. However, there are too many different DRG codes, so the boxplot by DRG code is messy. It makes me worry that I have made a mistake. Anyway, I apply the function to a subset of the data and verified that it successfully creates a boxplot by 'DRG Definition'. I also completed the option for different payment methods, which I hope meets most of the requirements for Function 1.
+
 ```{r}
 drg_data_test <- head(drg_data, 10000)
 ```
