@@ -9,11 +9,20 @@ editor: visual
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
+
 ```{r}
+library(readr)
 library(lab2group8package)
 ```
 
+```{r}
+# Load the data 
+drg_data <- read_csv("DRG_data.csv")
+```
+
+
 # function 1
+
 ```{r}
 plot_payments_by_DRG
 ```
@@ -27,6 +36,7 @@ plot_payments_by_DRG(drg_data, "Average Covered Charges")
 ```
 
 # function 2
+
 ```{r}
 calculate_DRG_stats
 ```
@@ -38,5 +48,3 @@ calculate_DRG_stats
 ```{r}
 calculate_DRG_stats(drg_data, "mean")
 ```
-
-
