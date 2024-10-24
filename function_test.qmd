@@ -14,7 +14,7 @@ library(lab2group8package)
 ```
 
 ```{r}
-# Load the data 
+# Load the drg data 
 data(drg_data)
 ```
 
