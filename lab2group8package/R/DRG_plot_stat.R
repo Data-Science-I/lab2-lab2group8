@@ -67,4 +67,3 @@ calculate_DRG_stats <- function(data, stat_type = c("mean", "median", "sd")) {
 
   return(result)
 }
-# aa
