@@ -14,8 +14,8 @@ devtools::install_github('Data-Science-I/lab2-lab2group8/lab2group8package')
 ```
 
 ```{r}
-library(readr)
 library(lab2group8package)
+library(readr)
 ```
 
 ```{r}
