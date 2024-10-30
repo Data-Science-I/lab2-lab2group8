@@ -1,0 +1,52 @@
+---
+title: "Test"
+author: "Hanzhi Chen, Belén Hervera, Yihan Xing"
+format: html
+editor: visual
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+devtools::install_github('Data-Science-I/lab2-lab2group8/lab2group8package')
+```
+
+```{r}
+library(readr)
+library(lab2group8package)
+```
+
+```{r}
+# Load the data 
+data(drg_data)
+```
+
+# function 1
+
+```{r}
+plot_payments_by_DRG
+```
+
+```{r}
+?plot_payments_by_DRG
+```
+
+```{r}
+plot_payments_by_DRG(drg_data, "Average Covered Charges")
+```
+
+# function 2
+
+```{r}
+calculate_DRG_stats
+```
+
+```{r}
+?calculate_DRG_stats
+```
+
+```{r}
+calculate_DRG_stats(drg_data, "mean")
+```
