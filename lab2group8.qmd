@@ -18,11 +18,110 @@ head(drg_data)
 ```
 
 ```{r}
+
 ```
 
 # Yihan
+```{r}
+# 加载必要的包
+library(readr)
+
+# 读取 CSV 数据
+drg_data <- read_csv("drg_data.csv")
+
+# 查看原始列名
+print(colnames(drg_data))
+
+# 去掉列名中的空格
+colnames(drg_data) <- gsub(" ", ".", colnames(drg_data))
+
+# 查看新的列名
+print(colnames(drg_data))
+
+```
 
 ```{r}
+colnames(drg_data)
+```
+
+```{r}
+plot_drg_payments <- function(data, payment_type = "Medicare") {
+  library(ggplot2)
+  
+  # 确定支付类型
+  payment_column <- switch(payment_type,
+                           Medicare = "Average.Medicare.Payments",  # 修改为新列名
+                           Total = "Average.Total.Payments",
+                           CoveredCharges = "Average.Covered.Charges",
+                           stop("无效的支付类型：", payment_type))  # 添加无效支付类型的错误处理
+  
+  # 检查数据是否包含所需列
+  if (!payment_column %in% colnames(data)) {
+    stop("数据中没有列：", payment_column)
+  }
+  
+  # 创建箱线图
+  ggplot(data, aes_string(x = "DRG.Definition", y = payment_column)) +
+    geom_boxplot(outlier.colour = "red", outlier.size = 1.5, outlier.shape = 16) +
+    labs(title = paste("Boxplot of Payments by DRG Code:", payment_type),
+         x = "DRG Code",
+         y = paste("Average", payment_type, "Payments")) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+          plot.title = element_text(hjust = 0.5))
+}
+
+```
+
+```{r}
+calculate_drg_statistics <- function(data, statistic = "mean") {
+  # 确保所需的列名
+  required_column <- "Average.Medicare.Payments"
+  
+  # 检查数据是否包含所需列
+  if (!required_column %in% colnames(data)) {
+    stop("数据中没有列：", required_column)
+  }
+  
+  # 计算统计量
+  stats_result <- data %>%
+    group_by(DRG.Definition) %>%
+    summarise(
+      Mean = mean(Average.Medicare.Payments, na.rm = TRUE),
+      Median = median(Average.Medicare.Payments, na.rm = TRUE),
+      SD = sd(Average.Medicare.Payments, na.rm = TRUE)
+    )
+  
+  # 根据指定的统计量返回结果
+  if (statistic == "mean") {
+    return(stats_result %>% select(DRG.Definition, Mean))
+  } else if (statistic == "median") {
+    return(stats_result %>% select(DRG.Definition, Median))
+  } else if (statistic == "sd") {
+    return(stats_result %>% select(DRG.Definition, SD))
+  } else {
+    stop("无效的统计量：", statistic)
+  }
+}
+
+
+```
+
+```{r}
+plot_drg_payments(drg_data, payment_type = "Medicare")
+```
+```{r}
+# 调用统计函数
+library(dplyr)
+mean_stats <- calculate_drg_statistics(drg_data, statistic = "mean")
+print(mean_stats)
+
+median_stats <- calculate_drg_statistics(drg_data, statistic = "median")
+print(median_stats)
+
+sd_stats <- calculate_drg_statistics(drg_data, statistic = "sd")
+print(sd_stats)
+
 ```
 
 # Belén
